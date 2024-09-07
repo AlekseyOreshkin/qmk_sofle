@@ -66,6 +66,7 @@ static void render_logo(void) {
 
 void print_status_narrow(void) {
     oled_write_P(PSTR("\n\n"), false);
+#if 0
     switch (get_highest_layer(layer_state)) {
         case 0:
             oled_write_ln_P(PSTR("Qwrt"), false);
@@ -93,6 +94,35 @@ void print_status_narrow(void) {
         default:
             oled_write_ln_P(PSTR("Undef"), false);
     }
+#else
+    switch (get_highest_layer(layer_state)) {
+        case 0:
+            oled_write_ln_P(PSTR("Qwrt"), false);
+            break;
+        default:
+            oled_write_P(PSTR("Mod\n"), false);
+            break;
+    }
+    oled_write_P(PSTR("\n\n"), false);
+    oled_write_ln_P(PSTR("LAYER"), false);
+    switch (get_highest_layer(layer_state)) {
+        case 0:
+            oled_write_P(PSTR("Base\n"), false);
+            break;
+        case 1:
+            oled_write_P(PSTR("Lower"), false);
+            break;
+        case 2:
+            oled_write_P(PSTR("Raise"), false);
+            break;
+        case 3:
+            oled_write_P(PSTR("Adjst"), false);
+            break;
+        default:
+            oled_write_ln_P(PSTR("Undef"), false);
+    }
+
+#endif
     oled_write_P(PSTR("\n\n"), false);
     led_t led_usb_state = host_keyboard_led_state();
     oled_write_ln_P(PSTR("CPSLK"), led_usb_state.caps_lock);
