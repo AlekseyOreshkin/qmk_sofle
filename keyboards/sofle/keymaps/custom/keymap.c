@@ -74,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_RAISE] = LAYOUT(
  // ╭──────────────────────────────────────────────────────╮                   ╭──────────────────────────────────────────────────────╮
       _______, _______, _______, _______, _______, _______,                      _______, _______, _______, _______, _______, _______,
-       KC_ESC, KC_PSCR, KC_SCRL, KC_PAUS, XXXXXXX, G(KC_L),                       KC_DEL, KC_PGUP,   KC_UP, KC_PGDN,  KC_INS, KC_HOME,
+       KC_ESC, KC_PSCR, KC_SCRL, KC_PAUS, XXXXXXX, XXXXXXX,                       KC_DEL, KC_PGUP,   KC_UP, KC_PGDN,  KC_INS, KC_HOME,
        KC_TAB, KC_LALT, KC_LCTL, KC_LSFT,G(S(KC_S)),KC_CAPS,                     KC_BSPC, KC_LEFT, KC_DOWN, KC_RGHT,  KC_DEL,  KC_END,
       _______, C(KC_Z), C(KC_X), C(KC_C), G(KC_V),G(KC_SPC), _______,  _______, KC_LSTRT,KC_PRVWD,KC_NXTWD, KC_LEND, XXXXXXX, _______,
                 _______, _______, _______, _______, _______,                     _______, _______, _______, _______, _______
