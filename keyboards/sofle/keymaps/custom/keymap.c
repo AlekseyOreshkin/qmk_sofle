@@ -14,6 +14,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 enum sofle_layers {
     /* _M_XYZ = Mac Os, _W_XYZ = Win/Linux */
     _QWERTY,
+    _GAME,
     _LOWER,
     _RAISE,
     _ADJUST,
@@ -21,7 +22,7 @@ enum sofle_layers {
 
 enum custom_keycodes {
     KC_QWERTY = QK_USER,
-    KC_COLEMAK,
+    KC_GAME,
     KC_PRVWD,
     KC_NXTWD,
     KC_LSTRT,
@@ -62,6 +63,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                  KC_LCTL, KC_LALT, TD_GUI, TL_LOWR,  KC_SPC,                       KC_ENT, TL_UPPR, TD_APP, KC_RALT, KC_RCTL
   // ╰──────────────────────────────────────────────────────╯                   ╰──────────────────────────────────────────────────────╯
 ),
+[_GAME] = LAYOUT(
+  // ╭──────────────────────────────────────────────────────╮                   ╭──────────────────────────────────────────────────────╮
+          KC_GRV,   KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                        KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_RBRC,
+          KC_ESC,    KC_T,   KC_Q,   KC_W,    KC_E,    KC_R,                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,  KC_LBRC,
+          KC_TAB,    KC_G,   KC_A,   KC_S,    KC_D,    KC_F,                        KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN,  KC_QUOT,
+          KC_LSFT,   KC_B,   KC_Z,   KC_X,    KC_C,    KC_V,  MS_BTN2,  KC_MUTE,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_RSFT,
+                 KC_LCTL, KC_LALT, TD_GUI, TL_LOWR,  KC_SPC,                       KC_ENT, TL_UPPR, TD_APP, KC_RALT, KC_RCTL
+  // ╰──────────────────────────────────────────────────────╯                   ╰──────────────────────────────────────────────────────╯
+),
 [_LOWER] = LAYOUT(
  // ╭──────────────────────────────────────────────────────╮                   ╭──────────────────────────────────────────────────────╮
       _______,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                        KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
@@ -98,11 +108,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 set_single_persistent_default_layer(_QWERTY);
             }
             return false;
-        // case KC_COLEMAK:
-        //     if (record->event.pressed) {
-        //         set_single_persistent_default_layer(_COLEMAK);
-        //     }
-        //     return false;
+        case KC_GAME:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_GAME);
+            }
+            return false;
         case KC_PRVWD:
             if (record->event.pressed) {
                 if (keymap_config.swap_lctl_lgui) {
