@@ -43,8 +43,8 @@ enum {
 tap_dance_action_t tap_dance_actions[] = {
     [TD_RALT_WIN] = ACTION_TAP_DANCE_DOUBLE(KC_RALT, KC_RGUI),
     [TD_ESC_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_CAPS),
-    [TD_GUI_UPPR] = ACTION_TAP_DANCE_LAYER_TOGGLE(KC_LGUI, 2),
-    [TD_APP__LWR] = ACTION_TAP_DANCE_LAYER_TOGGLE(KC_APP , 1),
+    [TD_GUI_UPPR] = ACTION_TAP_DANCE_LAYER_TOGGLE(KC_LGUI, _RAISE),
+    [TD_APP__LWR] = ACTION_TAP_DANCE_LAYER_TOGGLE(KC_APP , _LOWER),
 };
 
 #define TD_RALT TD(TD_RALT_WIN)
@@ -52,6 +52,16 @@ tap_dance_action_t tap_dance_actions[] = {
 #define TD_GUI  TD(TD_GUI_UPPR)
 #define TD_APP  TD(TD_APP__LWR)
 
+#define KS_ENG C(S(KC_5)) // key shortcut
+#define KS_RUS C(S(KC_4))
+#define KS_TUR C(S(KC_3))
+
+#define KS_UNDO C(KC_Z)   // key shortcut
+#define KS_CUT  C(KC_X)
+#define KS_COPY C(KC_C)
+#define KS_WPST G(KC_V)
+#define KS_LANG G(KC_SPC)
+#define KS_SCRN G(S(KC_S))
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -84,10 +94,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 [_RAISE] = LAYOUT(
  // ╭──────────────────────────────────────────────────────╮                   ╭──────────────────────────────────────────────────────╮
-      _______, _______, _______, _______, _______, _______,                      _______, _______, _______, _______, _______, _______,
+      _______, _______, _______,  KS_TUR,  KS_RUS,  KS_ENG,                      _______, _______, _______, _______, _______, _______,
        KC_ESC, KC_PSCR, KC_SCRL, KC_PAUS, XXXXXXX, XXXXXXX,                       KC_DEL, KC_PGUP,   KC_UP, KC_PGDN,  KC_INS, KC_HOME,
-       KC_TAB, KC_LALT, KC_LCTL, KC_LSFT,G(S(KC_S)),KC_CAPS,                     KC_BSPC, KC_LEFT, KC_DOWN, KC_RGHT,  KC_DEL,  KC_END,
-      _______, C(KC_Z), C(KC_X), C(KC_C), G(KC_V),G(KC_SPC), _______,  _______, KC_LSTRT,KC_PRVWD,KC_NXTWD, KC_LEND, XXXXXXX, _______,
+       KC_TAB, KC_LALT, KC_LCTL, KC_LSFT, KS_SCRN, KC_CAPS,                      KC_BSPC, KC_LEFT, KC_DOWN, KC_RGHT,  KC_DEL,  KC_END,
+      _______, KS_UNDO,  KS_CUT, KS_COPY, KS_WPST, KS_LANG, _______,  _______,  KC_LSTRT,KC_PRVWD,KC_NXTWD, KC_LEND, XXXXXXX, _______,
                 _______, _______, _______, _______, _______,                     _______, _______, _______, _______, _______
  // ╰──────────────────────────────────────────────────────╯                   ╰──────────────────────────────────────────────────────╯
 ),
