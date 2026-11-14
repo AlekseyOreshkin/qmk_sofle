@@ -18,7 +18,7 @@ Old EEPROM settings are preserved; use EE_CLR if a previous Ctrl/GUI swap persis
 
 Encoder rotation preserves custom's base scroll/volume and LOWER
 horizontal scroll/track selection. Other layers fall through.
-OLED labels follow the five layers.
+OLED display support is disabled.
 
 Build in your QMK environment:
 

@@ -86,21 +86,3 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 }
-
-#ifdef OLED_ENABLE
-bool oled_task_user(void) {
-    if (is_keyboard_master()) {
-        switch (get_highest_layer(layer_state | default_layer_state)) {
-            case QWERTY: oled_write_ln_P(PSTR("Qwerty"), false); break;
-            case LOWER: oled_write_ln_P(PSTR("Lower"), false); break;
-            case RAISE: oled_write_ln_P(PSTR("Raise"), false); break;
-            case NUMERIC: oled_write_ln_P(PSTR("Numeric"), false); break;
-            case ADJUST: oled_write_ln_P(PSTR("Adjust"), false); break;
-        }
-        oled_write_ln_P(PSTR("Caps"), host_keyboard_led_state().caps_lock);
-    } else {
-        oled_write_ln_P(PSTR("Sofle"), false);
-    }
-    return false;
-}
-#endif
